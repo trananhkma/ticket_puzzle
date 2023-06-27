@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.8"
 django = "^4.2.2"
 psycopg2 = "^2.9.6"
+memory-profiler = "^0.61.0"
 
 
 [build-system]
