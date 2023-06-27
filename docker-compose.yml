@@ -1,0 +1,29 @@
+version: "3"
+services:
+  app:
+    container_name: ticket-app
+    build: .
+    command: python -u -m debugpy --listen 0.0.0.0:5678 -m manage runserver 0.0.0.0:8000
+    depends_on:
+      - db
+    ports:
+      - 6868:8000
+      - 5678:5678
+    volumes:
+      - .:/code
+    env_file:
+      - .env
+    restart: always
+  db:
+    container_name: ticket-db
+    image: postgres:15.0
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    restart: always
+
+volumes:
+  pgdata:
